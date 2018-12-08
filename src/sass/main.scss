@@ -1,0 +1,131 @@
+@import "~bootstrap/scss/bootstrap";
+
+@import "fonts";
+@import "variables";
+@import "colors";
+@import "mixins";
+
+body {
+  background: #fff;
+  font-family: 'SF', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, p, input {
+  font-weight: 200;
+}
+
+p {
+  font-size: 24px;
+  letter-spacing: 1px;
+}
+
+header {
+  background-image: linear-gradient(45deg, hotpink, tomato);
+
+  h1 {
+    margin-bottom: 24px;
+    color: white;
+    font-size: 64px;
+    letter-spacing: 1px;
+  }
+
+  form {
+    position: relative;
+    max-width: 350px;
+    margin: 0 auto;
+  }
+
+  input {
+    &[type=text] {
+      width: 100%;
+      height: 36px;
+      padding: 0 44px 0 20px;
+      border-radius: 20px;
+      border: 0;
+      outline: none;
+    }
+  }
+
+  #submit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    background: $green;
+    border: 1px solid $green;
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      transform: rotate(180deg);
+      background: lighten($green, 5%);
+    }
+
+    &:before,
+    &:after {
+      content: '';
+      top: 16px;
+      right: 9px;
+      position: absolute;
+      display: block;
+      width: 15px;
+      height: 1px;
+      background: #fff;
+    }
+    &:before {
+      transform: rotate(90deg);
+    }
+  }
+}
+
+#list {
+  padding-left: 0;
+  margin: 0 auto;
+  list-style: none;
+  li {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+
+    &:first-child {
+      border-top: 1px solid #ddd;
+    }
+  }
+}
+
+.bottom {
+  .controls {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: 30px;
+    text-align: right;
+  }
+
+  button {
+    height: 36px;
+    padding: 0 20px;
+    margin: 0 auto;
+    background-color: #ccc;
+    border: 0;
+    border-radius: 20px;
+    outline: none;
+    cursor: pointer;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background-color: lighten(#ccc, 5%);
+    }
+    
+    &#clear {
+      display: block;
+    }
+
+    &#edit {
+      display: none;
+    }
+  }
+}
