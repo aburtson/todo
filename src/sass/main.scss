@@ -10,13 +10,43 @@ body {
   font-family: 'SF', sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6, p, input {
+h1, h2, h3, h4, h5, h6, p, input, li {
   font-weight: 200;
 }
 
 p {
   font-size: 24px;
   letter-spacing: 1px;
+}
+
+.action {
+  position: absolute;
+  top: 50%;
+  margin-top: -12px;
+  right: 6px;
+  width: 25px;
+  height: 25px;
+  padding: 0;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: rotate(180deg);
+  }
+
+  &:before,
+  &:after {
+    content: '';
+    top: calc(50% - 1px);
+    left: 4px;
+    position: absolute;
+    display: block;
+    width: 15px;
+    height: 1px;
+    background: #fff;
+  }
 }
 
 header {
@@ -36,46 +66,23 @@ header {
   }
 
   input {
-    &[type=text] {
       width: 100%;
       height: 36px;
       padding: 0 44px 0 20px;
       border-radius: 20px;
       border: 0;
       outline: none;
-    }
   }
 
   #submit {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 36px;
-    height: 36px;
-    padding: 0;
+    @extend .action;
     background: $green;
     border: 1px solid $green;
-    border-radius: 50%;
-    outline: none;
-    cursor: pointer;
-    transition: all 0.2s ease;
 
     &:hover {
-      transform: rotate(180deg);
-      background: lighten($green, 5%);
+      background: darken($green, 5%);
     }
 
-    &:before,
-    &:after {
-      content: '';
-      top: 16px;
-      right: 9px;
-      position: absolute;
-      display: block;
-      width: 15px;
-      height: 1px;
-      background: #fff;
-    }
     &:before {
       transform: rotate(90deg);
     }
@@ -86,13 +93,35 @@ header {
   padding-left: 0;
   margin: 0 auto;
   list-style: none;
-  li {
-    padding: 10px 0;
-    border-bottom: 1px solid #ddd;
 
-    &:first-child {
-      border-top: 1px solid #ddd;
+  li {
+    position: relative;
+    padding: 6px 44px 6px 20px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 36px;
+    background: #eee;
+    border-radius: 20px;
+    border: 0;
+    outline: none;
+    &:hover {
+      button {
+        opacity: 1;
+      }
     }
+  }
+
+  input {
+    width: 100%;
+    height: 24px;
+    background: none;
+    outline: none;
+    border: 0;
+  }
+
+  span {
+    display: block;
+    margin-left: 1px;
   }
 }
 
@@ -106,26 +135,40 @@ header {
   }
 
   button {
-    height: 36px;
-    padding: 0 20px;
-    margin: 0 auto;
-    background-color: #ccc;
-    border: 0;
-    border-radius: 20px;
-    outline: none;
     cursor: pointer;
-    transition: background 0.2s ease;
-
-    &:hover {
-      background-color: lighten(#ccc, 5%);
-    }
     
     &#clear {
       display: block;
+      height: 36px;
+      padding: 0 20px;
+      margin: 0 auto;
+      background-color: #ccc;
+      border: 0;
+      border-radius: 20px;
+      outline: none;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background-color: darken(#ccc, 5%);
+      }
     }
 
     &#edit {
       display: none;
+    }
+
+    &.delete {
+      @extend .action;
+      background: $red;
+      border: 1px solid $red;
+      width: 25px;
+      height: 25px;
+      opacity: 0;
+      transition: all 0.2s ease;
+      
+      &:hover {
+        background: darken($red, 5%);
+      }
     }
   }
 }
