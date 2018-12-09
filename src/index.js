@@ -5,6 +5,9 @@ const input = document.getElementById('input');
 const ul = document.getElementById('list');
 const submit = document.getElementById('submit');
 const clear = document.getElementById('clear');
+const header = document.querySelector('header');
+const title = header.querySelector('h1');
+const form = header.querySelector('form');
 
 // if localStorage exists, itemsArray becomes the items in localStorage. otherwise, it is an empty array
 let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
@@ -18,6 +21,21 @@ localStorage.setItem('spanLength', JSON.stringify(spanLength))
 // JSON.parse converts the contents of localStorage back into something we can work with
 // getItem() retrieves a value by the key
 const data = JSON.parse(localStorage.getItem('items'));
+
+const fadeIn = (element, time) => {
+    setTimeout(() => {
+        element.classList.add('fadeIn');
+    }, time);
+}
+
+const setClearButton = () => {
+    if(ul.hasChildNodes()) {
+        clear.style.display = 'block';
+    }
+}
+
+fadeIn(title, 1);
+fadeIn(form, 1000);
 
 const createDeleteButton = li => {
     const deleteButton = document.createElement('button');
@@ -33,8 +51,8 @@ const createTodo = text => {
         li.id = text;
         li.appendChild(span);
         ul.appendChild(li);
-        console.log('Our created ul', ul)
         createDeleteButton(li);
+        setClearButton();
     }
 }
 
@@ -67,6 +85,8 @@ clear.addEventListener('click', event => {
     while (ul.firstChild) {
         ul.removeChild(ul.firstChild);
     }
+
+    setClearButton();
 });
 
 // remove todo
